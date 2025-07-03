@@ -1,0 +1,11 @@
+# środowisko
+venv/
+__pycache__/
+*.pyc
+
+# konfiguracje prywatne
+.env
+
+# edytor
+.vscode/
+.idea/
