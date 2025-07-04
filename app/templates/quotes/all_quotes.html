@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+Quotes
+{% endblock %}
+
+{% block quotesActive %}
+active
+{% endblock %}
+
+
+{% block content %}
+<div class="container text-center">
+    <h1 class="fw-bold m-5">Let's inspire</h1>
+    {% for i in range(5) %}
+    <div class="card mt-5">
+        <div class="card-header fw-bold">
+           Quote #{{ i + 1}}
+        </div>
+        <div class="card-body bg-dark-subtle fs-5">
+            <figure>
+                <blockquote class="blockquote fst-italic">
+                    <p>A well-known quote, contained in a blockquote element.</p>
+                </blockquote>
+                <figcaption class="blockquote-footer fw-bold">
+                    Someone famous in <cite title="Source Title">Source Title</cite>
+                </figcaption>
+            </figure>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -11,8 +11,13 @@ def create_app():
     # mail.init_app(app)
     # login_manager.init_app(app)
 
-    @app.route('/')
-    def hello():
-        return render_template("home.html")
+    from .main import main as main_blueprint
+    app.register_blueprint(main_blueprint)
+
+    from .auth import auth as auth_blueprint
+    app.register_blueprint(auth_blueprint)
+
+    from .quotes import quotes as quotes_blueprint
+    app.register_blueprint(quotes_blueprint)
 
     return app

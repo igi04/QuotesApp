@@ -15,7 +15,7 @@
 <nav class="navbar navbar-expand-md bg-body-tertiary px-3">
     <div class="container-fluid gap-5 fs-4">
 
-        <a class="navbar-brand d-flex align-items-center fs-3" href="#">
+        <a class="navbar-brand d-flex align-items-center fs-3" href="{{ url_for('main.home') }}">
             <i class="bi bi-lightning-charge-fill me-1"></i>
             FlaskQuotes
         </a>
@@ -27,16 +27,23 @@
         <div class="collapse navbar-collapse justify-content-between" id="main-navbar">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item">
-                    <a class="nav-link active me-2" aria-current="page" href="#">Home</a>
+                    <a class="nav-link {% block homeActive %} {% endblock %} me-2" aria-current="page"
+                       href="{{ url_for('main.home') }}">Home</a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Quotes</a>
+                    <a class="nav-link {% block quotesActive %} {% endblock %}"
+                       href="{{ url_for('quotes.quotes_page') }}">Quotes</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link {% block emailerActive %} {% endblock %}" href="#">Emailer</a>
                 </li>
             </ul>
 
             <div class="d-flex gap-3 mt-1">
-                <a href="#" class="btn btn-outline-light btn-sm fs-5">Register</a>
-                <a href="#" class="btn btn-primary btn-sm fs-5">Login</a>
+                <a href="{{ url_for('auth.register_page') }}" class="btn btn-outline-light text-center btn-sm fs-5">Register</a>
+                <a href="{{ url_for('auth.login_page') }}" class="btn btn-primary btn-md fs-5">Login</a>
             </div>
         </div>
     </div>
