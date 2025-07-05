@@ -8,6 +8,7 @@ Register Page
     <h2 class="fw-bold m-4"><i class="mt-2 bi bi-person-add display-2"></i>&nbsp&nbsp Please Create your Account</h2>
     <br>
     <form class="form-register fs-4" data-bs-theme="light" method="POST">
+        {{ form.hidden_tag() }}
         {{ form.username.label(class="form-label") }}
         {{ form.username(class="form-control mb-2 bg-white", placeholder="User Name") }}
 
