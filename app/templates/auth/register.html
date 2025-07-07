@@ -4,30 +4,32 @@ Register Page
 {% endblock %}
 
 {% block content %}
-<div class="container text-center">
-    <h2 class="fw-bold m-4"><i class="mt-2 bi bi-person-add display-2"></i>&nbsp&nbsp Please Create your Account</h2>
-    <br>
-    <form class="form-register fs-4" data-bs-theme="light" method="POST">
-        {{ form.hidden_tag() }}
-        {{ form.username.label(class="form-label") }}
-        {{ form.username(class="form-control mb-2 bg-white", placeholder="User Name") }}
+<div class="container mt-5 mb-5" style="max-width: 50%">
+    <div class="p-4 border rounded-4 bg-body-tertiary">
+        <h1 class="mb-4 fw-bold text-center mt-1"><i class="mt-2 bi bi-person-add display-2 me-3"></i>Please Create your Account
+        </h1>
+        <form class="form-register fs-5" data-bs-theme="light" method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.username.label(class="form-label") }}
+            {{ form.username(class="form-control mb-2", placeholder="User Name") }}
 
-        {{ form.email_address.label(class="form-label") }}
-        {{ form.email_address(class="form-control mb-2 bg-light", placeholder="E-mail Address") }}
+            {{ form.email_address.label(class="form-label") }}
+            {{ form.email_address(class="form-control mb-2", placeholder="E-mail Address") }}
 
-        {{ form.password1.label(class="form-label") }}
-        {{ form.password1(class="form-control mb-2 bg-light", placeholder="Password") }}
+            {{ form.password1.label(class="form-label") }}
+            {{ form.password1(class="form-control mb-2", placeholder="Password") }}
 
-        {{ form.password2.label(class="form-label") }}
-        {{ form.password2(class="form-control bg-light", placeholder="Repeat Password") }}
+            {{ form.password2.label(class="form-label") }}
+            {{ form.password2(class="form-control mb-5", placeholder="Repeat Password") }}
 
-        <div class="mt-4">
-            <h6>Already have an account?</h6>
-            <a class="btn btn-sm btn-primary" href="{{ url_for('auth.login_page') }}">Login</a>
-        </div>
-        <div class="d-grid gap-2 mt-4">
-            {{ form.submit(class="btn btn-primary btn-lg mb-4 ") }}
-        </div>
-    </form>
+            <div class="mt-4 text-center">
+                <h6>Already have an account?</h6>
+                <a class="btn btn-sm btn-primary fs-5" href="{{ url_for('auth.login_page') }}">Login</a>
+            </div>
+            <div class="d-grid gap-2 mt-5">
+                {{ form.submit(class="btn btn-primary btn-lg mb-4") }}
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}

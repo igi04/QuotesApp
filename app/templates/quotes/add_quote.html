@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+Add new Quote
+{% endblock %}
+
+{% block quotesActive %}
+active
+{% endblock %}
+
+
+{% block content %}
+<div class="container mt-5 mb-5" style="max-width: 50%">
+    <h1 class="mb-4 fw-bold text-center mt-1"><i class="bi bi-chat-quote-fill text-primary me-3"></i>Add Your Own Quote</h1>
+    <div class="p-4 border rounded-4 bg-body-tertiary">
+        <form method="POST" data-bs-theme="light">
+            {{ form.hidden_tag() }}
+
+                {{ form.content.label(class="form-label fw-semibold") }}
+                {{ form.content(class="form-control mb-4", placeholder="Write your quote here...") }}
+
+                {{ form.author_name.label(class="form-label fw-semibold") }}
+                {{ form.author_name(class="form-control mb-4", placeholder="Author of the quote (optional)") }}
+
+                {{ form.is_private.label(class="form-label fw-semibold") }}
+                {{ form.is_private(class="form-select mb-5") }}
+
+                 <div class="d-grid">
+                    {{ form.add_quote(class="btn btn-primary btn-lg fw-bold") }}
+                 </div>
+    </div>
+</div>
+{% endblock %}

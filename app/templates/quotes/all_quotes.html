@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-Quotes
+Quotes List
 {% endblock %}
 
 {% block quotesActive %}
@@ -10,19 +10,27 @@ active
 
 {% block content %}
 <div class="container text-center">
-    <h1 class="fw-bold m-5">Let's inspire</h1>
-    {% for i in range(5) %}
+    <div class="d-flex justify-content-between align-items-center mt-5 mb-3">
+        <h1 class="fw-bold fs-1">Let's inspire</h1>
+        {% if current_user.is_authenticated %}
+        <a href="{{ url_for('quotes.add_quote_page') }}" class="btn btn-primary btn-lg px-4 fs-4">
+            <i class="bi bi-plus-circle me-1"></i> Add Quote
+        </a>
+        {% endif %}
+    </div>
+
+    {% for quote in quotes %}
     <div class="card mt-5">
         <div class="card-header fw-bold">
-           Quote #{{ i + 1}}
+            Quote #{{ loop.index }}
         </div>
         <div class="card-body bg-dark-subtle fs-5">
             <figure>
                 <blockquote class="blockquote fst-italic">
-                    <p>A well-known quote, contained in a blockquote element.</p>
+                    <p>{{ quote.content }}</p>
                 </blockquote>
                 <figcaption class="blockquote-footer fw-bold">
-                    Someone famous in <cite title="Source Title">Source Title</cite>
+                    <cite title="Source Title">{{ quote.author_name }}</cite>
                 </figcaption>
             </figure>
         </div>

@@ -1,34 +1,29 @@
 {% extends 'base.html' %}
-{% block title %}
-Home Page
-{% endblock %}
-
-{% block homeActive %}
-active
-{% endblock %}
+{% block title %} Home Page {% endblock %}
+{% block homeActive %} active {% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-center align-items-center mt-5">
-    <div class="container text-center mt-5">
-        <div class="row mb-5 mt-5">
-            <div>
-                <i class="bi bi-lightbulb-fill display-1 text-warning" style="font-size: 5rem;"></i>
-                <br><br><br>
-                <figure>
-                    <blockquote class="blockquote fs-1 fw-bold fst-italic">
-                        <p>"You become what you believe."</p>
-                    </blockquote>
-                    <figcaption class="blockquote-footer fs-3">
-                        Buddha
-                    </figcaption>
-                </figure>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <button type="button" class="btn btn-primary fw-bold btn-lg px-5 py-3 fs-3">Get Inspired</button>
-            </div>
-        </div>
+<section class="py-5 text-center text-white" style="background: linear-gradient(to right, #667cca, #764ba2); min-height: 80vh;">
+    <div class="container d-flex mt-5 flex-column justify-content-center align-items-center h-100">
+        <i class="bi bi-feather display-1 mb-4" style="font-size: 5rem;"></i>
+
+        <blockquote class="blockquote fs-1 fw-bold fst-italic mb-4">
+            "You become what you believe."
+        </blockquote>
+        <figcaption class="blockquote-footer text-white fs-4 mb-4">
+            Buddha
+        </figcaption>
+
+        <p class="lead fs-5 mb-5">Find your daily dose of inspiration – browse, save, and share quotes that matter.</p>
+
+        <a href="{{ url_for('quotes.quotes_page') }}" class="btn btn-light btn-lg px-5 py-3 fs-4 shadow-sm mt-3">
+            Get Inspired
+        </a>
     </div>
-</div>
+</section>
+
+<footer class="text-center text-muted fw-semibold fs-5 mt-5 mb-3">
+    A daily spark of wisdom – from words to action.
+</footer>
+
 {% endblock %}
