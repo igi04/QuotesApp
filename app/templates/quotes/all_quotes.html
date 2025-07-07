@@ -13,28 +13,36 @@ active
     <div class="d-flex justify-content-between align-items-center mt-5 mb-3">
         <h1 class="fw-bold fs-1">Let's inspire</h1>
         {% if current_user.is_authenticated %}
-        <a href="{{ url_for('quotes.add_quote_page') }}" class="btn btn-primary btn-lg px-4 fs-4">
+        <a href="{{ url_for('quotes.add_quote_page') }}" class="btn btn-primary btn-lg">
             <i class="bi bi-plus-circle me-1"></i> Add Quote
         </a>
         {% endif %}
     </div>
 
-    {% for quote in quotes %}
-    <div class="card mt-5">
-        <div class="card-header fw-bold">
-            Quote #{{ loop.index }}
+    <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
+        {% for quote in quotes %}
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body bg-light-subtle">
+                    <h5 class="card-title text-muted">Quote #{{ loop.index }}</h5>
+                    <blockquote class="blockquote fst-italic fs-3">
+                        <p>{{ quote.content }}</p>
+                    </blockquote>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <form method="POST" action="{{ url_for('quotes.like_quote', quote_id=quote.id) }}">
+                            <button type="submit" class="btn btn-outline-danger border-0 p-0 fs-4">
+                                 <i class="bi bi-heart{{ '-fill' if current_user in quote.liked_by else '' }}"></i>
+                            </button>
+                        </form>
+
+                        <figcaption class="blockquote-footer text-end mt-3 fs-4">
+                            <cite>{{ quote.author_name }}</cite>
+                        </figcaption>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="card-body bg-dark-subtle fs-5">
-            <figure>
-                <blockquote class="blockquote fst-italic">
-                    <p>{{ quote.content }}</p>
-                </blockquote>
-                <figcaption class="blockquote-footer fw-bold">
-                    <cite title="Source Title">{{ quote.author_name }}</cite>
-                </figcaption>
-            </figure>
-        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 {% endblock %}

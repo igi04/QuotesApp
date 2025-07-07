@@ -49,3 +49,8 @@ def logout():
     logout_user()
     flash(["You logged out"], category='info')
     return redirect(url_for('main.home'))
+
+@auth.route('/user-profile')
+@login_required
+def  profile_page():
+    return render_template('auth/profile.html')
