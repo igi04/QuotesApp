@@ -37,7 +37,7 @@
 
                 {% if current_user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link {% block emailerActive %}{% endblock %}" href="#">Emailer</a>
+                    <a class="nav-link {% block emailerActive %}{% endblock %}" href="{{ url_for('main.emailer_page') }}">Emailer</a>
                 </li>
                 {% endif %}
             </ul>

@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:6-alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      - FLASK_APP=app
+      - FLASK_RUN_HOST=0.0.0.0
+      - TZ=Europe/Warsaw
+    env_file:
+      - .env
+    depends_on:
+      - redis
+    command: ["flask", "run", "--host=0.0.0.0"]
+
+
+  celery_worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.celery
+    restart: always
+    volumes:
+      - .:/app
+    environment:
+      - TZ=Europe/Warsaw
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - web
+    command: ["celery", "-A", "make_celery", "worker", "--loglevel=info"]
+
+  celery_beat:
+    build:
+      context: .
+      dockerfile: Dockerfile.celery
+    restart: always
+    volumes:
+      - .:/app
+    environment:
+      - TZ=Europe/Warsaw
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - web
+    command: ["celery", "-A", "make_celery", "beat", "--loglevel=info"]
+
+volumes:
+  redis_data:

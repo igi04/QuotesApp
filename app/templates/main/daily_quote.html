@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Twój codzienny cytat motywacyjny!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eeeeee;
+        }
+        .header h1 {
+            color: #333333;
+        }
+        .content {
+            padding: 20px 0;
+            text-align: center;
+        }
+        .quote-box {
+            background-color: #e0f7fa;
+            border-left: 5px solid #00bcd4;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #00796b;
+            font-size: 1.2em;
+            line-height: 1.5;
+        }
+        .quote-author {
+            text-align: right;
+            font-weight: bold;
+            color: #555555;
+            margin-top: 10px;
+        }
+        .footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #eeeeee;
+            font-size: 0.9em;
+            color: #888888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome, {{ user.username }}!</h1>
+        </div>
+        <div class="content">
+            <p>Here is your daily motivation</p>
+            <div class="quote-box">
+                <p>"{{ quote.content }}"</p>
+                <p class="quote-author">- {{ quote.author_name }}</p>
+            </div>
+            <p>>We hope this quote inspires you to take action!</p>
+        </div>
+        <div class="footer">
+            <p>If you no longer wish to receive daily quotes, you can change your preferences in the app settings.</p>
+            <p>Quotes App - All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

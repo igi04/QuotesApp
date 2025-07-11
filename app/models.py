@@ -3,7 +3,7 @@ from sqlalchemy.orm import backref
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from app.extensions import db
-from sqlalchemy import Column, Integer, String, ForeignKey, Text, Boolean
+from sqlalchemy import Column, Integer, String, ForeignKey, Text, Boolean, Time
 
 likes = db.Table('likes',
                  Column('user_id', Integer, ForeignKey('user.id')),
@@ -15,6 +15,8 @@ class User(UserMixin, db.Model):
     username = Column(String(50), unique=True, nullable=False)
     email = Column(String(50), unique=True, nullable=False)
     password_hash = Column(String(50), nullable=False)
+    daily_quote_enabled = Column(Boolean, default=False)
+    daily_quote_time = Column(Time, default=None)
 
     quotes = db.relationship('Quote', backref='author', lazy=True)
     liked_quotes = db.relationship('Quote', secondary=likes, backref=backref('liked_by', lazy='dynamic'),lazy='dynamic')
