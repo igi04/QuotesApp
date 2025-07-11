@@ -1,5 +1,6 @@
 from app.extensions import celery, db, mail
-from flask import render_template
+from flask import render_template, flash
+from flask_login import current_user
 from flask_mail import Message
 from app.models import User, Quote
 import random
@@ -20,12 +21,28 @@ def send_quote_email(user_id):
         return
 
     quotes_count = Quote.query.count()
+
     if quotes_count == 0:
         print("No quotes in the database")
         return
 
-    random_offset = random.randint(0, quotes_count-1)
-    quote = Quote.query.offset(random_offset).first()
+    user_preferences = user.daily_quote_category
+
+    if user_preferences == 'all':
+        quotes_count = Quote.query.count()
+        if quotes_count > 0:
+            random_offset = random.randint(0, quotes_count - 1)
+            quote = Quote.query.offset(random_offset).first()
+
+    elif user_preferences == 'liked':
+        liked = current_user.liked_quotes.all()
+        if liked:
+            quote = random.choice(liked)
+
+    else:
+        quotes_in_category = Quote.query.filter_by(category=user_preferences).all()
+        if quotes_in_category:
+            quote = random.choice(quotes_in_category)
 
     try:
         msg = Message(

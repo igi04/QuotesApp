@@ -19,7 +19,10 @@ active
                 {{ form.content(class="form-control mb-4", placeholder="Write your quote here...") }}
 
                 {{ form.author_name.label(class="form-label fw-semibold") }}
-                {{ form.author_name(class="form-control mb-4", placeholder="Author of the quote (optional)") }}
+                {{ form.author_name(class="form-control mb-4", placeholder="Author of the quote") }}
+
+                {{ form.category.label(class="form-label fw-semibold") }}
+                {{ form.category(class="form-control mb-4") }}
 
                 {{ form.is_private.label(class="form-label fw-semibold") }}
                 {{ form.is_private(class="form-select mb-5") }}

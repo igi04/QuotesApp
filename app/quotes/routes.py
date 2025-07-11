@@ -17,6 +17,7 @@ def add_quote_page():
     if form.validate_on_submit():
         quote_to_create = Quote(content=form.content.data,
                                 author_name=form.author_name.data,
+                                category=form.category.data,
                                 is_private=form.is_private.data == "True",
                                 user_id=current_user.id)
         db.session.add(quote_to_create)

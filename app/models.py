@@ -1,7 +1,6 @@
 from flask_login import UserMixin
 from sqlalchemy.orm import backref
 from werkzeug.security import generate_password_hash, check_password_hash
-
 from app.extensions import db
 from sqlalchemy import Column, Integer, String, ForeignKey, Text, Boolean, Time
 
@@ -17,6 +16,7 @@ class User(UserMixin, db.Model):
     password_hash = Column(String(50), nullable=False)
     daily_quote_enabled = Column(Boolean, default=False)
     daily_quote_time = Column(Time, default=None)
+    daily_quote_category = Column(String(50), default=None)
 
     quotes = db.relationship('Quote', backref='author', lazy=True)
     liked_quotes = db.relationship('Quote', secondary=likes, backref=backref('liked_by', lazy='dynamic'),lazy='dynamic')
@@ -36,5 +36,6 @@ class Quote(db.Model):
     id = Column(Integer, primary_key=True)
     content = Column(Text, nullable=False)
     author_name = Column(String(50), nullable=False)
+    category = Column(String(50), default="motivation")
     is_private = Column(Boolean, default=True)
     user_id = Column(db.Integer, ForeignKey('user.id'))

@@ -11,10 +11,16 @@ User Profile Page
         <p class="text-muted">{{ current_user.email }}</p>
 
         <hr>
-
         <div class="text-start mt-4 fs-5">
             <p><strong>Username:</strong> {{ current_user.username }}</p>
             <p><strong>Email:</strong> {{ current_user.email }}</p>
+            <p><strong>Daily email:</strong>
+                {% if current_user.daily_quote_enabled %}
+                    <i class="bi bi-check2-circle text-success"></i> Enabled
+                {% else %}
+                   <i class="bi bi-x-lg text-danger"></i> Disabled
+                {% endif %}
+            </p>
         </div>
 
     </div>

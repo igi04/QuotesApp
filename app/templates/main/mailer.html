@@ -23,6 +23,11 @@
                     <div class="form-text text-light">Time is in 24h format (e.g. 07:30, 20:15)</div>
                 </div>
 
+                <div class="mb-4">
+                    {{ form.daily_quote_category.label(class="form-label") }}
+                    {{ form.daily_quote_category(class="form-control text-center") }}
+                </div>
+
                 <button type="submit" class="btn btn-success btn-lg px-4 mt-2">
                     <i class="bi bi-check-circle-fill"></i> Save Settings
                 </button>
