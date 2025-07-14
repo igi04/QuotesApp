@@ -45,7 +45,7 @@ A Flask-powered web application that allows users to browse, add, and manage mot
 ---
 
 ## Screenshots
-
+![Database Model](screenshots/database_model.png)
 ![Home Page](screenshots/home_page.png)
 ![Register Page](screenshots/register_page.png)
 ![Register Page Validation](screenshots/register_validation.png)
