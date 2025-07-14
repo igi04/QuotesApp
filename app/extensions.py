@@ -5,12 +5,14 @@ from flask_mail import Mail
 from celery import Celery
 from flask import Flask
 
+#Init all needed objects
 db = SQLAlchemy()
 migrate = Migrate()
 login_manager = LoginManager()
 mail = Mail()
 celery = Celery()
 
+#Flask integration with Celery (from flask docs)
 from celery import Celery, Task
 def celery_init_app(app: Flask) -> Celery:
     class FlaskTask(Task):

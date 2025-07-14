@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import BooleanField, TimeField, SubmitField, SelectField
 from wtforms.validators import Optional
+
+#Mailer Settings Form
 class MailerSettingsForm(FlaskForm):
     daily_quote_enabled = BooleanField('Enable daily mails')
     daily_quote_time = TimeField("Preferred delivery time", validators=[Optional()])

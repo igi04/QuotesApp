@@ -15,17 +15,39 @@ Quotes List
     {% if quotes%}
     <h3>Inspire, motivate and improve yourself</h3>
     {% for quote in quotes %}
-    <div class="card mt-5">
-        <div class="card-header fw-bold text-center">
-            Quote #{{ loop.index }}
+    <div class="card mt-4 shadow-sm border-0">
+        <div class="card-header text-center">
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Quote #{{ loop.index }}</span>
+
+                <div class="btn-group btn-group-sm gap-2" role="group" aria-label="Quote actions">
+                    <form method="POST" action="{{ url_for('quotes.toggle_visibility', quote_id=quote.id) }}">
+                        <button type="submit" class="btn btn-outline-warning" title="Toggle visibility">
+                            {% if quote.is_private %}
+                            <i class="bi bi-lock-fill"></i> Private
+                            {% else %}
+                            <i class="bi bi-unlock-fill"></i> Public
+                            {% endif %}
+                        </button>
+                    </form>
+
+                    <form method="POST" action="{{ url_for('quotes.delete_quote', quote_id=quote.id) }}"
+                          onsubmit="return confirm('Are you sure you want to delete this quote?');">
+                        <button type="submit" class="btn btn-outline-danger" title="Delete quote">
+                            <i class="bi bi-trash-fill"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="card-body bg-dark-subtle fs-5">
+
+        <div class="card-body bg-dark-subtle">
             <figure>
-                <blockquote class="blockquote fst-italic">
+                <blockquote class="blockquote fst-italic fs-5">
                     <p>{{ quote.content }}</p>
                 </blockquote>
-                <figcaption class="blockquote-footer fw-bold">
-                    <cite title="Source Title">{{ quote.author_name }}</cite>
+                <figcaption class="blockquote-footer fw-bold text-end fs-6 mt-3">
+                    <cite>{{ quote.author_name }}</cite>
                 </figcaption>
             </figure>
         </div>

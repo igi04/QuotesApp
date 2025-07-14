@@ -1,16 +1,15 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_required
-from app.models import User
-from app import mail, db, Quote
+from app import db, Quote
 from .forms import MailerSettingsForm
 from . import main
 
-
+#Main page
 @main.route('/')
 def home():
-    return render_template("home.html")
+    return render_template("main/home.html")
 
-
+#Emailer page
 @main.route('/mailer', methods=['GET', 'POST'])
 @login_required
 def emailer_page():
@@ -18,6 +17,7 @@ def emailer_page():
 
     if form.validate_on_submit():
 
+        #Validation of emailer settings
         if form.daily_quote_enabled.data and not form.daily_quote_time.data:
             flash(["Please select a preferred delivery time."], "warning")
             return redirect(url_for('main.emailer_page'))
@@ -36,6 +36,7 @@ def emailer_page():
                     flash(["No quotes found in this category. Choose a different one."], "danger")
                     return redirect(url_for('main.emailer_page'))
 
+        #Commit changes to database
         previous_enabled = current_user.daily_quote_enabled
         current_user.daily_quote_enabled = form.daily_quote_enabled.data
         current_user.daily_quote_time = form.daily_quote_time.data
@@ -59,6 +60,7 @@ def emailer_page():
             current_user.daily_quote_category = "all"
             db.session.commit()
 
+        #Fill form with initial data on GET method
         form.daily_quote_enabled.data = current_user.daily_quote_enabled
         form.daily_quote_time.data = current_user.daily_quote_time
         form.daily_quote_category.data = current_user.daily_quote_category

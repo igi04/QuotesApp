@@ -5,7 +5,7 @@ from . import auth
 from .forms import RegisterForm, LoginForm
 from flask_login import login_user, login_required, logout_user
 
-
+#Register page
 @auth.route('/register', methods=['GET','POST'])
 def register_page():
     form = RegisterForm()
@@ -25,10 +25,11 @@ def register_page():
 
     return render_template('auth/register.html', form = form)
 
-
+#Login page
 @auth.route('/login', methods=['GET', 'POST'])
 def login_page():
     form = LoginForm()
+
     if form.validate_on_submit():
         attempted_user : User = User.query.filter_by(username=form.username.data).first()
 
@@ -43,6 +44,7 @@ def login_page():
 
     return render_template("auth/login.html", form = form)
 
+#Logout works
 @auth.route('/logout')
 @login_required
 def logout():
@@ -50,6 +52,7 @@ def logout():
     flash(["You logged out"], category='info')
     return redirect(url_for('main.home'))
 
+#User profile page
 @auth.route('/user-profile')
 @login_required
 def  profile_page():

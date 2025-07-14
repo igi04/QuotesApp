@@ -5,6 +5,7 @@ from wtforms.validators import Length, EqualTo, Email, DataRequired
 from app.models import User
 
 class RegisterForm(FlaskForm):
+    #My own validation methods
     def validate_password1(self, field):
         password = field.data
         if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password):
@@ -20,6 +21,7 @@ class RegisterForm(FlaskForm):
         if email_address:
             raise ValidationError("E-mail address already exists. Try a different e-mail address")
 
+    #Structure of register form
     username = StringField(label='Username',
                            validators=[Length(min=3, max=25, message='Username should be between 3-25 characters'),
                                        DataRequired()])
@@ -33,6 +35,7 @@ class RegisterForm(FlaskForm):
     submit = SubmitField(label='Create Account')
 
 
+#Login form
 class LoginForm(FlaskForm):
     username = StringField(label="Username", validators=[DataRequired()])
     password = PasswordField(label="Password", validators=[DataRequired()])
