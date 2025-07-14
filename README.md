@@ -44,16 +44,32 @@ A Flask-powered web application that allows users to browse, add, and manage mot
 
 ---
 
-## 🖼️ Screenshots
+## Screenshots
 
-> _Tu możesz wrzucić 1–2 obrazki UI_
+![Home Page](screenshots/home_page.png)
+![Register Page](screenshots/register_page.png)
+![Register Page Validation](screenshots/register_validation.png)
+![Login Page](screenshots/login_page.png)
+![Home Page After Logged in](screenshots/home_page_logged.png)
+![Quotes Page](screenshots/quotes_page.png)
+![Quotes Page Filtering](screenshots/quotes_filtering1.png)
+![Quotes Page Filtering Second](screenshots/quotes_filtering2.png)
+![Mailer Page](screenshots/mailer_page.png)
+![Mailer Page Setting](screenshots/mailer_settings.png)
+![Celery Logs](screenshots/celery_logs.png)
+![Mailer Result (e-mail)](screenshots/mailer_result.png)
+![Liked Quotes Page](screenshots/liked_page.png)
+![Liked Quotes Page Filled](screenshots/liked_page_fill.png)
+![User Quotes Page](screenshots/user_quotes.png)
+![User Profile Page](screenshots/user_page.png)
+![Logged out](screenshots/logged_out.png)
 
 ---
 
 ## Tech Stack
 
 - Python 3.11, Flask, SQLAlchemy
-- Flask-WTF, Flask-Mail, Flask-Login
+- Flask-WTF, Flask-Mail, Flask-Login, Flask-Migration
 - Bootstrap 5, HTML5, Jinja2
 - SQLite (or PostgreSQL in production)
 
